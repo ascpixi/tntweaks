@@ -1,0 +1,77 @@
+# This is the main configuration file for TNTweaks.
+# If this file is deleted, it will be automatically restored to it's default self by the plugin.
+# To reset this file, execute the command "/tntweaks regenerateConfig".
+
+# Allows defusing primed TNT by right clicking the explosive with the specified item.
+tnt-defuse:
+  enabled: true
+  # The item used to defuse TNT.
+  item: shears
+  # The sound that plays when a primed TNT entity is defused. If none, no sound will play.
+  # The sound ID needs to be from this list: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html#enum.constant.summary
+  sound: ENTITY_SHEEP_SHEAR
+  # Makes TNT drop instead of destroying it. Keep in mind that primed TNT duping exploits can make this a way to infinitely duplicate TNT blocks.
+  drop:
+    enabled: false
+    # Drops sand and gunpowder instead of TNT blocks.
+    drop-ingredients: true
+
+# Adds arrows that explode on contact.
+explosive-arrow:
+  enabled: true
+  # The explosion power of explosive arrows.
+  # See https://minecraft.gamepedia.com/Explosion#Explosion_strength for naturally occurring explosion forces.
+  power: 2
+
+  # Whether to start fires when an explosive arrow has been shot by a bow with the Flame enchantment.
+  start-fires: true
+
+  # Whether explosions from explosive arrows should break blocks.
+  break-blocks: true
+
+  # The crafting recipe of explosive arrows.
+  recipe:
+    # The shape of the crafting recipe.
+    shape:
+      - "gsg"
+      - "sAs"
+      - "gsg"
+    # The mappings of the characters in the shape to Minecraft items. Case-sensitive.
+    ingredients:
+      g: gunpowder
+      s: sand
+      A: arrow
+
+    # The amount of arrows that the recipe will result in.
+    amount: 4
+
+# Allows extending the fuse time by adding gunpowder to a TNT block in a crafting interface.
+fuse-time-extending:
+    enabled: true
+    # The maximum fuse time extension level (i.e. how much gunpowder can be added to extend the fuse)
+    max-fuse-extension-level: 3
+    # How much ticks should one level add to the fuse timer.
+    tick-extension: 40
+
+# Allow crafting of the unstable version of the TNT block, which explodes after a player breaks it.
+unstable-tnt:
+  # Drops unstable TNT if its mined with a item enchanted with the Silk Touch enchantment.
+  drop-if-mined-with-silk-touch: true
+  # The crafting recipe of the unstable TNT.
+  recipe:
+    # Whether to enable or disable crafting of unstable TNT blocks.
+    enabled: true
+    # The shape of the crafting recipe.
+    shape:
+      - "aGa"
+      - "FTG"
+      - "aFa"
+    # The mappings of the characters in the shape to Minecraft items. Case-sensitive.
+    ingredients:
+      a: air
+      G: gunpowder
+      F: flint
+      T: tnt
+
+    # The amount of unstable TNT blocks the recipe will result in.
+    amount: 1

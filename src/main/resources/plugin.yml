@@ -1,0 +1,13 @@
+name: TNTweaks
+version: ${project.version}
+main: me.ascpixel.tntweaks.TNTweaks
+api-version: 1.16 # 1.16.4 has block NBT support
+prefix: TNTweaks
+authors: [ascpixel]
+description: Extensions to the TNT explosive in Minecraft.
+
+commands:
+  tntweaks:
+    descriptions: Manages the TNTweaks plugin.
+    usage: "Usage: /tntweaks [reload | regenerateConfig]"
+    aliases: tnttweaks
