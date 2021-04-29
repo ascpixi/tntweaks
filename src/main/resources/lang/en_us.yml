@@ -1,0 +1,41 @@
+# This is the English (United States) language file for TNTweaks.
+# You can see all locale codes here: https://minecraft.fandom.com/wiki/Language#Available_languages
+
+# This section defines this language's locale configuration.
+meta:
+    # Color codes for reference:
+    # &0 - Black
+    # &1 - Dark Blue
+    # &2 - Dark Green
+    # &3 - Dark Aqua
+    # &4 - Dark Red
+    # &5 - Dark Purple
+    # &6 - Gold
+    # &7 - Gray
+    # &8 - Dark Gray
+    # &9 - Blue
+    # &a - Green
+    # &b - Aqua
+    # &c - Red
+    # &e - Yellow
+    # &f - White
+
+    # &k - Obfuscated
+    # &l - Bold
+    # &m - Strikethrough
+    # &o - Italic
+    # &r - Reset
+    color-code-indicator: "&"
+    
+    # Numbers prefixed with this character will be replaced with their corresponding values.
+    variable-indicator: "^"
+
+version-string: "Running &eTNTweaks v^0&r."
+reloaded: "&aThe configuration file has been reloaded."
+reloaded-errors: "&eThe configuration file has been reloaded with errors. Check the server console for more details."
+config-regenerated: "&aThe configuration file has been regenerated."
+default-no-permissions-message: "&cI'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is a mistake."
+
+explosive-arrow: "Explosive Arrow"
+fuse-duration-lore: "&r&7Fuse Duration: ^0"
+unstable-tnt: "Unstable TNT"

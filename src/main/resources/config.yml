@@ -2,6 +2,15 @@
 # If this file is deleted, it will be automatically restored to it's default self by the plugin.
 # To reset this file, execute the command "/tntweaks regenerateConfig".
 
+# Language settings.
+language:
+  # The default language for items and if a player's client locale could not be determined.
+  default: "en_us"
+
+  # Ignores player's client locales.
+  # If this is false, the language file corresponding to a given player's client locale will be used. (i.e. the player's language settings)
+  override: false
+
 # Allows defusing primed TNT by right clicking the explosive with the specified item.
 tnt-defuse:
   enabled: true

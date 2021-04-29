@@ -18,7 +18,7 @@ final class ExplosiveArrowItem extends CraftableShaped {
     public ItemStack getItem(int amount){
         ItemStack item = new ItemStack(Material.SPECTRAL_ARROW);
         item.setAmount(amount);
-        Util.setName(item, "Explosive Arrow");
+        Util.setName(item, TNTweaks.instance.localization.getLocalizedString("explosive-arrow", null));
 
         NBTItem nbti = new NBTItem(item);
         nbti.setBoolean("isExplosive", true);
@@ -30,7 +30,7 @@ final class ExplosiveArrowItem extends CraftableShaped {
         return item;
     }
 
-    /**
+     /**
      * Checks if the provided item is a explosive arrow.
      * @param arrow Any item.
      * @return True if the item is a explosive arrow, false otherwise.

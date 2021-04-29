@@ -1,0 +1,41 @@
+# dis ar teh teh LOLCAT LANGUAGE FILE 4 TNTweaks.
+# u can c all locale codez her: https://minecraft.fandom.com/wiki/Language#Available_languages
+
+# dis secshun definez dis languagez locale configurashun.
+meta:
+    # color codez 4 reference:
+    # &0 - BLACK
+    # &1 - DARK BLU
+    # &2 - DARK GREEN
+    # &3 - DARK AQUA
+    # &4 - DARK RED
+    # &5 - DARK PURPLE
+    # &6 - GOLD
+    # &7 - GRAY
+    # &8 - DARK GRAY
+    # &9 - BLU
+    # &a - GREEN
+    # &b - AQUA
+    # &c - RED
+    # &e - YELLOW
+    # &f - WHITE
+
+    # &k - OBFUSCATD
+    # &l - BOLD
+    # &m - STRIKETHROUGH
+    # &o - ITALIC
+    # &r - RESET
+    color-code-indicator: "&"
+    
+    # numbers prefixd wif dis charactr will be replacd wif their correspondin valuez
+    variable-indicator: "^"
+
+version-string: "Runnin &eTNTweaks v^0&r."
+reloaded: "&aTeh configurashun file has been reloadd."
+reloaded-errors: "&eTeh configurashun file has been reloadd wif errors. check teh servr console 4 moar details."
+config-regenerated: "&aTeh configurashun file has been regeneratd."
+default-no-permissions-message: "&cim sry, but u do not has permishun 2 perform dis command :( plz contact teh servr administrators if u bleev dat dis ar teh mistaek."
+
+explosive-arrow: "BOOM ERROW"
+fuse-duration-lore: "&r&7TIEM OF FUSE: ^0"
+unstable-tnt: "UNSTABL BOOM"

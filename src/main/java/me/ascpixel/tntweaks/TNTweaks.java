@@ -30,6 +30,11 @@ public final class TNTweaks extends JavaPlugin {
      */
     public ParsedConfiguration config;
 
+    /**
+     * The localization resource.
+     */
+    public Localization localization;
+
     final TNTweaksModule[] modules = {
             new UnstableTntModule(),
             new TntDefuseModule(),

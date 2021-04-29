@@ -19,7 +19,7 @@ final class UnstableTntItem extends CraftableShaped {
     public ItemStack getItem(int amount){
         ItemStack item = new ItemStack(Material.TNT);
         item.setAmount(amount);
-        Util.setName(item,"Unstable TNT");
+        Util.setName(item,TNTweaks.instance.localization.getLocalizedString("unstable-tnt", null));
 
         NBTItem nbti = new NBTItem(item);
         nbti.setBoolean("unstable", true);

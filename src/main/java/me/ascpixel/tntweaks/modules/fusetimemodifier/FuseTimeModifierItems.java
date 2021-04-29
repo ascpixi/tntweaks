@@ -23,7 +23,7 @@ final class FuseTimeModifierItems extends MultiCraftable<Integer> {
         if(itemCache.containsKey(duration)) return itemCache.get(duration);
 
         ItemStack tnt = new ItemStack(Material.TNT);
-        Util.setLore(tnt, ChatColor.RESET + "" + ChatColor.GRAY + "Fuse Duration: " + duration);
+        Util.setLore(tnt, TNTweaks.instance.localization.getLocalizedString("fuse-duration-lore", null, duration.toString()));
         NBTItem nbti = new NBTItem(tnt);
         nbti.setInteger("fuseDuration", duration);
         nbti.applyNBT(tnt);

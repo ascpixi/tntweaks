@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +34,16 @@ final class MainCommand implements CommandExecutor, TabCompleter {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        Player senderPlayer = sender instanceof Player ? (Player)sender : null;
+
         if(!sender.hasPermission("tntweaks.command") && !sender.isOp()){
             String permissionMessage = command.getPermissionMessage();
 
             if(permissionMessage != null)
                 sender.sendMessage(command.getPermissionMessage());
             else{
-                sender.sendMessage(ChatColor.RED +
-                        "I'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is a mistake."
+                sender.sendMessage(
+                        plugin.localization.getLocalizedString("default-no-permissions-message", senderPlayer)
                 );
             }
             return true;
@@ -48,7 +51,7 @@ final class MainCommand implements CommandExecutor, TabCompleter {
 
         switch(args.length){
             case 0:
-                sender.sendMessage("Running " + ChatColor.YELLOW + "TNTweaks v" + plugin.getDescription().getVersion() + ChatColor.RESET + ".");
+                sender.sendMessage(plugin.localization.getLocalizedString("version-string", senderPlayer, plugin.getDescription().getVersion()));
                 return true;
             case 1:
                 switch(args[0]){
@@ -56,15 +59,15 @@ final class MainCommand implements CommandExecutor, TabCompleter {
                         plugin.config.loadConfig();
 
                         if(plugin.reloadAllModules()){
-                            sender.sendMessage(ChatColor.GREEN + "The configuration file has been reloaded.");
+                            sender.sendMessage(plugin.localization.getLocalizedString("reloaded", senderPlayer));
                         }
                         else{
-                            sender.sendMessage(ChatColor.YELLOW + "The configuration file has been reloaded with errors. Check the server console for more details.");
+                            sender.sendMessage(plugin.localization.getLocalizedString("reloaded-errors", senderPlayer));
                         }
                         return true;
                     case "regenerateConfig":
                         plugin.config.regenerate();
-                        sender.sendMessage(ChatColor.GREEN + "The configuration file has been regenerated.");
+                        sender.sendMessage(plugin.localization.getLocalizedString("config-regenerated", senderPlayer));
                         return true;
                 }
                 return false;

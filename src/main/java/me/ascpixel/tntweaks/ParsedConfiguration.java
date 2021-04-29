@@ -1,7 +1,6 @@
 package me.ascpixel.tntweaks;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.Plugin;
 
 /**
  * The parsed configuration file of TNTweaks.
@@ -11,13 +10,13 @@ public class ParsedConfiguration {
      * The file configuration of the plugin this ParsedConfiguration belongs to.
      */
     public FileConfiguration raw;
-    private final Plugin plugin;
+    private final TNTweaks plugin;
 
     /**
      * Constructs a new ParsedConfiguration.
      * @param targetPlugin The plugin to read the configuration from.
      */
-    public ParsedConfiguration(final Plugin targetPlugin){
+    public ParsedConfiguration(final TNTweaks targetPlugin){
         plugin = targetPlugin;
         loadConfig();
     }
@@ -30,6 +29,8 @@ public class ParsedConfiguration {
         raw = plugin.getConfig();
         raw.options().copyDefaults(true);
         plugin.saveDefaultConfig();
+        plugin.localization = new Localization(plugin, raw.getString("language.default"));
+        plugin.localization.playerLocaleOverride = raw.getBoolean("language.override");
     }
 
     /**
