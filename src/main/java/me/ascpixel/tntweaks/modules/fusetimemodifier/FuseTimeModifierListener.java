@@ -272,6 +272,8 @@ final class FuseTimeModifierListener implements Listener {
     public void onPrepareItemCraftEvent(PrepareItemCraftEvent event){
         // Only allow fuse-extended TNT to be crafted by using regular TNT.
         // Normally, this would be achieved using RecipeChoice.ExactChoice, but it's only valid for shaped recipes.
+        if(event.getRecipe() == null) return;
+
         ItemStack[] items = module.items.getItems();
         ItemStack normalTnt = new ItemStack(Material.TNT);
 
