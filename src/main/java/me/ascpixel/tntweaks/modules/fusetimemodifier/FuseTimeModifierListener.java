@@ -18,6 +18,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
@@ -266,6 +268,21 @@ final class FuseTimeModifierListener implements Listener {
         }
     }
 
+    @EventHandler(ignoreCancelled = true)
+    public void onPrepareItemCraftEvent(PrepareItemCraftEvent event){
+        // Only allow fuse-extended TNT to be crafted by using regular TNT.
+        // Normally, this would be achieved using RecipeChoice.ExactChoice, but it's only valid for shaped recipes.
+        ItemStack[] items = module.items.getItems();
+        ItemStack normalTnt = new ItemStack(Material.TNT);
+
+        for(ItemStack item : items){
+            if(event.getRecipe().getResult().equals(item) &&
+                !event.getInventory().contains(normalTnt)){
+                event.getInventory().setResult(new ItemStack(Material.AIR));
+                return;
+            }
+        }
+    }
 
     private boolean triggerAdjacentFuseTriggers(Material type, Block block){
         if(type == Material.LEVER ||

@@ -11,6 +11,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 
+import java.util.HashMap;
+
 final class FuseTimeModifierItems extends MultiCraftable<Integer> {
     /**
      * Gets a fuse-extended TNT with the given duration.
@@ -18,13 +20,22 @@ final class FuseTimeModifierItems extends MultiCraftable<Integer> {
      * @return A fuse-extended TNT item.
      */
     public ItemStack getItem(Integer duration){
+        if(itemCache.containsKey(duration)) return itemCache.get(duration);
+
         ItemStack tnt = new ItemStack(Material.TNT);
         Util.setLore(tnt, ChatColor.RESET + "" + ChatColor.GRAY + "Fuse Duration: " + duration);
         NBTItem nbti = new NBTItem(tnt);
         nbti.setInteger("fuseDuration", duration);
         nbti.applyNBT(tnt);
+
+        itemCache.put(duration, tnt);
         return tnt;
     }
+
+    /**
+     * Items created with getItem().
+     */
+    private HashMap<Integer, ItemStack> itemCache = new HashMap<>();
 
     /**
      * Gets the fuse duration for the specified item.
@@ -65,6 +76,34 @@ final class FuseTimeModifierItems extends MultiCraftable<Integer> {
     private int currentMaxFuseDuration = 0;
 
     /**
+     * Gets the current maximum fuse duration of TNT.
+     */
+    public int getCurrentMaxFuseDuration() {
+        return currentMaxFuseDuration;
+    }
+
+    /**
+     * Gets fuse time modified TNT items.
+     * @param howMuch How much fuse-extended TNT items to create?
+     */
+    public ItemStack[] getItems(int howMuch){
+        ItemStack[] items = new ItemStack[howMuch];
+
+        for (int i = 0; i < howMuch; i++) {
+            items[i] = getItem(i + 1);
+        }
+
+        return items;
+    }
+
+    /**
+     * Gets fuse time modified TNT items, up to the current maximum fuse extension.
+     */
+    public ItemStack[] getItems(){
+        return getItems(currentMaxFuseDuration);
+    }
+
+    /**
      * Gets the namespaced key for a recipe for the specified TNT fuse duration.
      * @param duration The TNT fuse duration to fetch a namespace key for.
      * @return The namespaced key for the recipe for the specified fuse duration.
@@ -86,12 +125,14 @@ final class FuseTimeModifierItems extends MultiCraftable<Integer> {
             // Beginning at x, repeat until we hit y - x.
             for (int i = maxFuseDuration; i <= currentMaxFuseDuration - maxFuseDuration; i++) {
                 Bukkit.removeRecipe(getRecipeNamespacedKey(i));
+                itemCache.remove(i);
             }
         }
         else if(maxFuseDuration > currentMaxFuseDuration){
             // Add all missing recipes.
             for (int i = (currentMaxFuseDuration == 0 ? 1 : currentMaxFuseDuration); i <= maxFuseDuration; i++) {
                 Bukkit.addRecipe(getRecipe(i));
+                getItem(i); // Cache item
             }
         }
 
@@ -105,5 +146,7 @@ final class FuseTimeModifierItems extends MultiCraftable<Integer> {
         for (int i = 1; i <= currentMaxFuseDuration; i++) {
             Bukkit.removeRecipe(getRecipeNamespacedKey(i));
         }
+
+        itemCache.clear();
     }
 }
