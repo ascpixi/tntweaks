@@ -84,3 +84,6 @@ unstable-tnt:
 
     # The amount of unstable TNT blocks the recipe will result in.
     amount: 1
+
+# This entry should not be changed.
+config-version: 1

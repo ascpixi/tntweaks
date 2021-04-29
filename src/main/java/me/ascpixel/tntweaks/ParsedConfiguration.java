@@ -1,6 +1,9 @@
 package me.ascpixel.tntweaks;
 
+import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
+
+import java.util.Set;
 
 /**
  * The parsed configuration file of TNTweaks.
@@ -29,8 +32,33 @@ public class ParsedConfiguration {
         raw = plugin.getConfig();
         raw.options().copyDefaults(true);
         plugin.saveDefaultConfig();
+        attemptUpdate();
         plugin.localization = new Localization(plugin, raw.getString("language.default"));
         plugin.localization.playerLocaleOverride = raw.getBoolean("language.override");
+    }
+
+    /**
+     * Attempts to update the config, if needed.
+     */
+    public void attemptUpdate(){
+        Configuration defaults = raw.getDefaults();
+        if(defaults == null){
+            plugin.logger.warning("Could not attempt to update the configuration file; cannot get the default values from the JAR file.");
+            return;
+        }
+
+        if(raw.getInt("config-version", -1) < defaults.getInt("config-version")){
+            plugin.logger.warning("The configuration file is outdated - automatically upgrading it...");
+
+            Set<String> keys = defaults.getKeys(true);
+
+            for(String key : keys){
+                raw.set(key, defaults.get(key));
+            }
+
+            plugin.saveConfig();
+            plugin.logger.info("The configuration file has been upgraded.");
+        }
     }
 
     /**
