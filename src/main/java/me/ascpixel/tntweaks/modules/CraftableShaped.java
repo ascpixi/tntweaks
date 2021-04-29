@@ -64,6 +64,12 @@ public abstract class CraftableShaped {
 
         // Transform unparsed map to a parsed map
         for(Map.Entry<String, Object> entry : ingredientSection.getValues(false).entrySet()){
+            // ConfigurationSection.getValues(boolean).entrySet(); will also provide default values.
+            // If a key is not present in the configuration section, ignore it.
+            if(!ingredientSection.contains(entry.getKey(), true)){
+                continue;
+            }
+
             String matId = (String)entry.getValue();
             Material mat = Material.matchMaterial(matId);
 
