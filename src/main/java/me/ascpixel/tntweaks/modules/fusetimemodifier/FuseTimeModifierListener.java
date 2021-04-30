@@ -253,7 +253,7 @@ final class FuseTimeModifierListener implements Listener {
                 }
             }
         }
-        else if(redstoneData instanceof Powerable){
+        else if(redstoneData instanceof Powerable && redstoneData instanceof Directional){
             if(triggerAdjacentFuseTriggers(redstone.getType(), redstone)) return;
 
             Directional directionData = (Directional)redstoneData;
@@ -289,7 +289,8 @@ final class FuseTimeModifierListener implements Listener {
     private boolean triggerAdjacentFuseTriggers(Material type, Block block){
         if(type == Material.LEVER ||
                 type.name().contains("BUTTON") ||
-                type.name().contains("PRESSURE_PLATE")
+                type.name().contains("PRESSURE_PLATE") ||
+                type == Material.DETECTOR_RAIL
         ){
             Util.checkAdjacent(block, (Block b) -> {
                 if(b.getType() == Material.TNT){

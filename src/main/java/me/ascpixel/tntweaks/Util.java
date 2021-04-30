@@ -57,14 +57,14 @@ public final class Util {
         Location loc = target.getLocation();
 
         // Sides
-        blockConsumer.accept(world.getBlockAt(loc.add(1, 0, 0)));
-        blockConsumer.accept(world.getBlockAt(loc.add(0, 0, 1)));
-        blockConsumer.accept(world.getBlockAt(loc.subtract(1, 0, 0)));
-        blockConsumer.accept(world.getBlockAt(loc.subtract(0, 0, 1)));
+        blockConsumer.accept(world.getBlockAt(loc.clone().add(1, 0, 0)));
+        blockConsumer.accept(world.getBlockAt(loc.clone().add(0, 0, 1)));
+        blockConsumer.accept(world.getBlockAt(loc.clone().subtract(1, 0, 0)));
+        blockConsumer.accept(world.getBlockAt(loc.clone().subtract(0, 0, 1)));
 
         // Up/down
-        blockConsumer.accept(world.getBlockAt(loc.add(0, 1, 0)));
-        blockConsumer.accept(world.getBlockAt(loc.add(0, -1, 0)));
+        blockConsumer.accept(world.getBlockAt(loc.clone().add(0, 1, 0)));
+        blockConsumer.accept(world.getBlockAt(loc.clone().subtract(0, 1, 0)));
     }
 
     /**

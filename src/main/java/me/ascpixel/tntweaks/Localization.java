@@ -68,7 +68,7 @@ public class Localization {
             if(!langFile.canRead()) {
                 TNTweaks.instance.logger.warning("Cannot access the file \"" + langFile.getName() + "\". Ignoring.");
                 continue;
-            }; // ensure we can read this file
+            } // ensure we can read this file
 
             final String locale = langFile.getName().replace(".yml", "");
             final YamlConfiguration localeFile = YamlConfiguration.loadConfiguration(langFile);
