@@ -5,10 +5,13 @@ import me.ascpixel.tntweaks.modules.explosivearrow.ExplosiveArrowModule;
 import me.ascpixel.tntweaks.modules.fusetimemodifier.FuseTimeModifierModule;
 import me.ascpixel.tntweaks.modules.tntdefuse.TntDefuseModule;
 import me.ascpixel.tntweaks.modules.unstabletnt.UnstableTntModule;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.PluginLogger;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 /**
@@ -46,7 +49,7 @@ public final class TNTweaks extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        logger = PluginLogger.getLogger("TNTweaks");
+        logger = getLogger();
         config = new ParsedConfiguration(this);
 
         // Register modules
@@ -64,6 +67,21 @@ public final class TNTweaks extends JavaPlugin {
             mainCommand.setExecutor(executor);
             mainCommand.setTabCompleter(executor);
         }
+
+        // Update notifications
+        try{
+            GitHubRelease release = new GitHubRelease("ascpixel/tntweaks", "latest");
+
+            if(!release.isPluginVersionThisRelease()){
+                Bukkit.getConsoleSender().sendMessage(ChatColor.AQUA + "[TNTweaks] There is a new update: TNTweaks v" + release.getTagName() + "! Download it from https://github.com/ascpixel/tntweaks/releases");
+            }
+        }
+        catch(IOException ex){
+            logger.warning("Could not check for updates from GitHub: ");
+            ex.printStackTrace();
+        }
+
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "[TNTweaks] TNTweaks v" + getDescription().getVersion() + " has been enabled");
     }
 
     /**
