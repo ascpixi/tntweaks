@@ -23,6 +23,8 @@ If applicable, add screenshots to help explain your problem.
 **Server (please complete the following information):**
  - Server Engine [e.g. Bukkit, Spigot]
  - Minecraft Version [e.g. 1.16.3]
+ - Your configuration file
+ - Other plugins, if applicable
 
 **Additional context**
 Add any other context about the problem here.
