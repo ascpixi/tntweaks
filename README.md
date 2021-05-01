@@ -1,4 +1,4 @@
-# TNTweaks
+![TNTweaks](https://github.com/ascpixel/tntweaks/raw/main/Resources/Artwork/Banner.png)
 **Supported Minecraft version(s):** 1.16.3+
 
 **TNTweaks** is a plugin that adds such features as fuse-extended TNT, explosive arrows, TNT defusal, and more, with the ability to toggle, customize and translate every module!
