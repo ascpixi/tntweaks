@@ -70,10 +70,10 @@ public final class TNTweaks extends JavaPlugin {
 
         // Update notifications
         try{
-            GitHubRelease release = new GitHubRelease("ascpixel/tntweaks", "latest");
+            GitHubRelease release = new GitHubRelease("ascpixi/tntweaks", "latest");
 
             if(!release.isPluginVersionThisRelease()){
-                Bukkit.getConsoleSender().sendMessage(ChatColor.AQUA + "[TNTweaks] There is a new update: TNTweaks v" + release.getTagName() + "! Download it from https://github.com/ascpixel/tntweaks/releases");
+                Bukkit.getConsoleSender().sendMessage(ChatColor.AQUA + "[TNTweaks] There is a new update: TNTweaks v" + release.getTagName() + "! Download it from https://github.com/ascpixi/tntweaks/releases");
             }
         }
         catch(IOException ex){
