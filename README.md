@@ -12,6 +12,6 @@ When contributing code, please keep performance and stability in mind. When crea
 
 If possible, avoid third-party libraries and NMS. If packet modification or optimization is necessary, NMS is allowed.
 ### 🌎 Translations
-When making translations, please make sure that the name of the translation file corresponds to a valid [Minecraft locale code](https://minecraft.fandom.com/wiki/Language#Available_languages). The translations should not be machine-translated. Changing the `meta` section is allowed with proper reasoning.
+When making translations, please make sure that the name of the translation file corresponds to a valid [Minecraft locale code](https://minecraft.fandom.com/wiki/Language#Languages). The translations should not be machine-translated. Changing the `meta` section is allowed with proper reasoning.
 
 ###### This project is hosted on [BukkitDev](https://dev.bukkit.org/projects/tntweaks) and [SpigotMC](https://www.spigotmc.org/resources/tntweaks.91912)
